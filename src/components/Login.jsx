@@ -1,26 +1,97 @@
 //rafce - react Arrow function component export
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../utils/firebase";
+import { addUser } from "../utils/userSlice";
 import { checkValidData } from "../utils/validate";
 import Header from "./Header";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
-
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  //   const name = useRef("");
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
   const handleButtonClick = () => {
-    //Validate the form data
-    // checkValidData(email,password);s
     console.log(email.current.value);
     console.log(password.current.value);
+    // console.log("name.current.value",name.current.value);
 
-    const message = checkValidData(email.current.value, password.current.value, name.current.value);
-    // console.log(message);
+    const message = checkValidData(
+      email.current.value,
+      password.current.value
+      //   name.current.value
+    );
     setErrorMessage(message);
+
+    if (message) return;
+
+    if (!isSignInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://avatars.githubusercontent.com/u/175339950?s=400&u=461b3e52508483997646ea14bfca4ec28af96a7d&v=4",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
+
+          console.log("user", user);
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
 
   const toggleSignInForm = () => {
