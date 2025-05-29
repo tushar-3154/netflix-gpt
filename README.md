@@ -1,7 +1,8 @@
 # React + Vite
+
 # Netflix GPT
 
-- Create React 
+- Create React
 - Configured TailwindCSS
 - Header
 - Routing of App
@@ -16,21 +17,38 @@
 - Created Redux Store with userSlice
 - Implement Signout
 - Update Profile
-- fetch rom TMDB 
+- BugFix : Sign up user displayName and profile update
+- BugFix : if the user is not logged in Redirect /browse to Login Page and Vice-Versa
+- Unsubscibed to the onAuthStateChanged
+- Add hardcoded values to constants file 
+- Register TMDB API & create an app & get access token
+- Get Data from TMDB now playing movies list API 
+- custome hook For Now Playing Movies 
+- Create MovieSlice
+- update store with movie Data
+- Planning For MainContainer and SecondaryContainer
+- Fetch Data For Trailer Video
+- Update Store with Trailer Video Data
+- Embedded the Youtube video and make it autoplay and mute
+- Tailwind classes to make mainContainer look awesome
+
+
 
 
 # Feature
-- Login/Sign Up
-    - Sign In / Sign up Form
-    - redirect to Browse page
-- Browse (after authentication)
-    - Header
-    - Main Movie
-        - Tailer in Background
-        - Title & Description
-        - MovieSuggestion
-            - MovieList * N
 
-- NetflixGPT 
-    - Search Bar
-    - Movie Suggestions
+- Login/Sign Up
+  - Sign In / Sign up Form
+  - redirect to Browse page
+- Browse (after authentication)
+
+  - Header
+  - Main Movie
+    - Tailer in Background
+    - Title & Description
+    - MovieSuggestion
+      - MovieList \* N
+
+- NetflixGPT
+  - Search Bar
+  - Movie Suggestions
