@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { PHOTO_URL } from "../utils/constants";
+import { BG_IMG_URL, PHOTO_URL } from "../utils/constants";
 import { auth } from "../utils/firebase";
 import { addUser } from "../utils/userSlice";
 import { checkValidData } from "../utils/validate";
@@ -23,7 +23,6 @@ const Login = () => {
   const password = useRef(null);
 
   const handleButtonClick = () => {
-
     const message = checkValidData(
       email.current.value,
       password.current.value
@@ -92,7 +91,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/fa7be975-efc3-48c6-8188-f07fdd1aa476/web/IN-en-20250428-TRIFECTA-perspective_e045264e-b4d4-4a6f-b2cc-f95e3344a332_medium.jpg"
+          src={BG_IMG_URL}
           alt="bgImage"
         />
       </div>

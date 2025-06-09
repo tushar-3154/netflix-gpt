@@ -2,7 +2,7 @@ export const LOGO = "https://help.nflxext.com/helpcenter/OneTrust/oneTrust_produ
 
 export const PHOTO_URL = "https://avatars.githubusercontent.com/u/175339950?s=400&u=461b3e52508483997646ea14bfca4ec28af96a7d&v=4";
 
-export const API_OPTIONS  ={
+export const API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
@@ -10,4 +10,8 @@ export const API_OPTIONS  ={
     }
 }
 
-export  const IMG_CDN_URL = "https://image.tmdb.org/t/p/w400";
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w400";
+
+export const BG_IMG_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/fa7be975-efc3-48c6-8188-f07fdd1aa476/web/IN-en-20250428-TRIFECTA-perspective_e045264e-b4d4-4a6f-b2cc-f95e3344a332_medium.jpg"
+
+export const SUPPORTED_LANGUAGE = [{ identifier: "en", name: "English" }, { identifier: "hn", name: "Hindi" }, { identifier: "gj", name: "Gujarati" }]

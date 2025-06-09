@@ -11,10 +11,13 @@ const MainContainer = () => {
 
   const { original_title, overview, id } = mainMovies;
 
+  console.log(overview);
+  const shortOverview = overview?.split(" ").slice(0, 50).join(" ") + "...";
+
   return (
     <div>
-      <VideoTitle title={original_title} overview={overview} />
-      <VideoBackground movieId={id}/>
+      <VideoTitle title={original_title} overview={shortOverview} />
+      <VideoBackground movieId={id} />
     </div>
   );
 };
